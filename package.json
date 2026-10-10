@@ -1,0 +1,23 @@
+{
+  "name": "vanish",
+  "productName": "Vanish",
+  "version": "0.1.0",
+  "description": "One-click zero-trace uninstaller for vibe coders. CLI-first, markdown out, leaves nothing behind.",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --external:electron --outfile=dist/main.js && esbuild src/preload.ts --bundle --platform=node --external:electron --outfile=dist/preload.js",
+    "start": "electron .",
+    "dist": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "esbuild": "^0.24.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "dev.vanish.app",
+    "productName": "Vanish",
+    "files": ["dist/main.js", "dist/preload.js", "package.json"],
+    "win": { "target": ["dir"] }
+  }
+}
